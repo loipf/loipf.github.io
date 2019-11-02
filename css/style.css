@@ -1031,7 +1031,7 @@
 /* Banner */
 
 	#banner {
-		background-image: url(../images/dark_tint.png), url(../background_image/ireland_cows.png);
+		background-image: url(../background_image/dark_tint.png), url(../background_image/ireland_cows.png);
 		background-position: center center;
 		background-size: cover;
 		color: #474747;
