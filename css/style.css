@@ -1032,7 +1032,7 @@
 /* Banner */
 
 	#banner {
-		background-image: url(../background_image/ireland_cows.png);
+background-image: url(../background_image/ireland_cows.png);
 		background-position: center center;
 		background-size: cover;
 		color: #474747;
