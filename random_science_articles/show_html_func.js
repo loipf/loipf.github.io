@@ -52,7 +52,7 @@ function full_html_container(dict){
 
 
 // global variables
-var json_url = "https://raw.githubusercontent.com/loipf/loipf.github.io/master/random_science_articles/articles_dict.json";
+const json_url = "https://raw.githubusercontent.com/loipf/loipf.github.io/master/random_science_articles/articles_dict.json";
 var art_dict = json_to_dict(json_url);
 var rand_keys = shuffle_array(Object.keys(art_dict));
 var rand_counter = 0;
