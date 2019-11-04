@@ -31,18 +31,33 @@ function get_art_html_box(key, value) {
 
 
 function full_html_container(dict){
-	rand_keys = shuffle_array(Object.keys(dict));
+	var i = 0;
+	while(i <3) {
+		// accesses global variables to avoid same articles
+		if(rand_counter >= rand_keys.length) {
+			rand_counter = 0; }
+		var key = rand_keys[rand_counter];
 
-	for (var i = 0; i < 3; i++) {
-		var key = rand_keys[i];
-		document.write( get_art_html_box( key, dict[key] ) );
+	document.getElementById("science_art_"+i+"_key").innerHTML = key;
+	document.getElementById("science_art_"+i+"_value").innerHTML = dict[key];
+	console.log(document.getElementById("science_art_"+i+"_link"));
+
+	document.getElementById("science_art_"+i+"_link").href = dict[key];
+	
+	i++;
+	rand_counter++;
+ 
 	}
 }
 
 
+// global variables
 var json_url = "https://raw.githubusercontent.com/loipf/loipf.github.io/master/random_science_articles/articles_dict.json";
 var art_dict = json_to_dict(json_url);
-console.log(art_dict);
+var rand_keys = shuffle_array(Object.keys(art_dict));
+var rand_counter = 0;
+
+// console.log(art_dict);
 
 
 function reroll_boxes() {
@@ -50,7 +65,10 @@ function reroll_boxes() {
 }
 
 
+
 reroll_boxes();
+
+
 
 
 
