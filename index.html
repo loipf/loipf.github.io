@@ -160,7 +160,10 @@
 						 
 					</header>
 
-<form method="post" action="#contact_form">
+<form id="contact_form"
+  action="https://formspree.io/xyyyzwwb"
+  method="POST"
+>
 				<div class="row uniform 50%">
 				<div class="6u 12u$(4)">
 				<input type="text" name="name" id="contact_name" value="" placeholder="name">
@@ -173,8 +176,8 @@
 				<textarea name="message" id="contact_message" placeholder="please enter your message" rows="6"></textarea>
 				</div>
 				<div class="12u$">
-				<ul class="actions">
-				<button class="button alt icon fa-envelope" type="submit" value="send message" >send message</button>
+				<button class="button alt icon fa-envelope" id='contact_send' >send message</button>
+				<p id="contact_status"></p>
 
 				</div>
 </form>

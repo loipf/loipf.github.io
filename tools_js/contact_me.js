@@ -1,19 +1,47 @@
 
 
-$(document).ready ->
-  $('#contact_form').submit (e) ->
-    name = document.getElementById('contact_name')
-    email = document.getElementById('contact_email')
-    message = document.getElementById('contact_message')
-    if !name.value or !email.value or !message.value
-      alertify.error 'please check your entries'
-      return false
-    else
-      $.ajax
-        method: 'POST'
-        url: 'https://formspree.io/xyyyzwwb'
-        data: $('#contact-form').serialize()
-        datatype: 'json'
-      e.preventDefault()
-      $(this).get(0).reset()
-      alertify.success 'message sent'
+window.addEventListener("DOMContentLoaded", function() {
+
+    // get the form elements defined in your form HTML above
+    
+    var form = document.getElementById("contact_form");
+    var button = document.getElementById("contact_send");
+    var status = document.getElementById("contact_status");
+
+    // Success and Error functions for after the form is submitted
+    
+    function success() {
+      form.reset();
+      button.style = "display: none ";
+      status.innerHTML = "thanks!";
+    }
+
+    function error() {
+      status.innerHTML = "oops, there was a problem :(";
+    }
+
+    // handle the form submission event
+
+    form.addEventListener("submit", function(ev) {
+      ev.preventDefault();
+      var data = new FormData(form);
+      ajax(form.method, form.action, data, success, error);
+    });
+  });
+  
+  // helper function for sending an AJAX request
+
+  function ajax(method, url, data, success, error) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState !== XMLHttpRequest.DONE) return;
+      if (xhr.status === 200) {
+        success(xhr.response, xhr.responseType);
+      } else {
+        error(xhr.status, xhr.response, xhr.responseType);
+      }
+    };
+    xhr.send(data);
+  }
